@@ -4,7 +4,7 @@ import org.assertj.core.api.AssertionsForClassTypes.assertThat
 import org.testng.annotations.Test
 import java.io.File
 
-class TrebuchetTest {
+class TrebuchetPart1Test {
 
     val folder = File("resources/day1")
 
@@ -45,23 +45,24 @@ class TrebuchetTest {
 pqr3stu8vwx
 a1b2c3d4e5f
 treb7uchet""".split("\n")
-        assertThat(amendedCalibrationDoc.sumOfCalibrationValues())
+        assertThat(amendedCalibrationDoc.sumOfCalibrationValues(spelledOut = false))
             .isEqualTo(142)
     }
 
     @Test
     fun `Amended calibration doc as file is parsed correctly`() {
         val amendedCalibrationDoc : CalibrationDoc = sample.readLines()
-        assertThat(amendedCalibrationDoc.sumOfCalibrationValues())
+        assertThat(amendedCalibrationDoc.sumOfCalibrationValues(spelledOut = false))
             .isEqualTo(142)
     }
 
     @Test
     fun `Amended calibration solution`() {
         val amendedCalibrationDoc : CalibrationDoc = actual.readLines()
-        assertThat(amendedCalibrationDoc.sumOfCalibrationValues())
+        assertThat(amendedCalibrationDoc.sumOfCalibrationValues(spelledOut = false))
             .isEqualTo(55816)
     }
+
 
 
 

@@ -10,8 +10,12 @@ class TestSetup {
     }
 
 
-    private val abcFile = File("/resources/abcFile")
+    private val abcFile = File("resources/abcFile")
 
+    @Test
+    fun `Files test files exist`() {
+        AssertionsForClassTypes.assertThat(abcFile).exists()
+    }
     @Test
     fun `Load abcFile`() {
         assert(abcFile.exists())
