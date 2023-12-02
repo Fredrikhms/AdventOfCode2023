@@ -29,14 +29,14 @@ class TrebuchetPart1Test {
     @Test
     fun `artistic amended line '1abc2' is  12`() {
         val line : ArtisticLine = "1abc2"
-        assertThat(line.parseCoordinates()).isEqualTo(12)
+        assertThat(line.parseArtisticCoordinates()).isEqualTo(12)
     }
 
     @Test
     fun `rest of artistic amended lines are correct `() {
-        assertThat("pqr3stu8vwx".parseCoordinates()).isEqualTo(38)
-        assertThat("a1b2c3d4e5f".parseCoordinates()).isEqualTo(15)
-        assertThat("treb7uchet".parseCoordinates()).isEqualTo(77)
+        assertThat("pqr3stu8vwx".parseArtisticCoordinates()).isEqualTo(38)
+        assertThat("a1b2c3d4e5f".parseArtisticCoordinates()).isEqualTo(15)
+        assertThat("treb7uchet".parseArtisticCoordinates()).isEqualTo(77)
     }
 
     @Test

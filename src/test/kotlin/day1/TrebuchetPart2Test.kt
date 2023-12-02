@@ -19,21 +19,23 @@ class TrebuchetPart2Test {
         assertThat(actual).exists()
     }
 
-
-    @Test
-    fun `Check parsing of numbers`() {
-        assertThat(replaceFirstIfRestIsNumber("two1nine".asSequence())?.toReadable()).isEqualTo(Pair(2, "wo1nine"))
-    }
-
     @Test
     fun `Check parsing of number four`() {
-        assertThat(replaceFirstIfRestIsNumber("four1nine".asSequence())?.toReadable()).isEqualTo(Pair(4, "our1nine"))
+        assertThat(parseFirsIfInMap("four1nine".asSequence(), mapOf("four" to 4))?.toReadable())
+            .isEqualTo(4 to "1nine")
+    }
+
+    fun Pair<Int, Sequence<Char>>.toReadable() = this.first to this.second.foldToString()
+
+    @Test
+    fun `Check parsing and extraction of numbers`() {
+        assertThat(parseAndExtractNumberBasedOnMap("two1nine", allDigits)).isEqualTo(2)
     }
 
     @Test
     fun `Check parsing of all numbers`() {
-        assertThat(parseLiteralsToNumbers("two1abc"))
-            .isEqualTo("2wo1abc")
+        assertThat(findAllNumbers("two1abc"))
+            .isEqualTo("21")
     }
 
     @Test
@@ -83,6 +85,11 @@ class TrebuchetPart2Test {
     }
 
     @Test
+    fun `Startswith - works`() {
+        assert("12345".asSequence().startsWith("123"))
+    }
+
+    @Test
     fun `Check parsing sample gives same amount`() {
         val spelledOut :CalibrationDoc = sample.readLines()
         assertThat(spelledOut.map { it.parseSpelledOutCoordinates() }.count())
@@ -94,13 +101,5 @@ class TrebuchetPart2Test {
         val spelledOut :CalibrationDoc = actual.readLines()
         assertThat(spelledOut.sumOfCalibrationValues(spelledOut=true)).isEqualTo(54980)
     }
-
-
-    @Test
-    fun `Startswith - works`() {
-        assert("12345".asSequence().startsWith("123"))
-    }
-
-    fun Pair<Int, Sequence<Char>>.toReadable() = Pair(first, second.foldToString())
 
 }
